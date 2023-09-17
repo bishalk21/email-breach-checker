@@ -10,9 +10,12 @@ function App() {
   const checkEmail = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/check-email", {
-        email,
-      });
+      const response = await axios.post(
+        "email-breach-checker.vercel.app/check-email",
+        {
+          email,
+        }
+      );
       setBreaches(response.data);
     } catch (err) {
       setError("Error fetching breach data.");

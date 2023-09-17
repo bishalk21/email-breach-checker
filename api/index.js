@@ -10,6 +10,13 @@ const HIBP_API_KEY = process.env.HIBP_API_KEY;
 app.use(cors());
 app.use(express.json());
 
+app.use("/", (req, res, next) => {
+  res.json({
+    status: "success",
+    message: "You have reach the end point",
+  });
+});
+
 app.post("/check-email", async (req, res) => {
   //   console.log("Received request to /check-email");
   const email = req.body.email;
