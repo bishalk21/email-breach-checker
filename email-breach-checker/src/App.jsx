@@ -7,15 +7,17 @@ function App() {
   const [breaches, setBreaches] = useState([]);
   const [error, setError] = useState("");
 
+  const rootURL =
+    process.env.NODE_ENV === "production"
+      ? "https://email-breach-checker.vercel.app"
+      : "https://email-breach-checker.vercel.app";
+
   const checkEmail = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "email-breach-checker.vercel.app/check-email",
-        {
-          email,
-        }
-      );
+      const response = await axios.post(rootURL + "/check-email", {
+        email,
+      });
       setBreaches(response.data);
     } catch (err) {
       setError("Error fetching breach data.");
